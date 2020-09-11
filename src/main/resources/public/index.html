@@ -6,11 +6,13 @@
 
   <script type="text/javascript">
     $(document).ready(function () {
+      var protocol = location.protocol + "//";
       var host = location.hostname;
-      var port = location.port;
+      var port = location.port ? ":" + location.port : "";
       var path = '/api/test/ping';
-      console.log('backend: ', host, port, path);
-      $.get('http://' + host + ':' + port + path).done(function (data) {
+
+      console.log('backend: ', protocol, host, port, path);
+      $.get(protocol + host + port + path).done(function (data) {
         $('#backend-message').html(data);
       });
     });
