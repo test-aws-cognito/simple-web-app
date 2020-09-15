@@ -10,12 +10,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
         http
+            // CSRF
             .csrf()
             .and()
+            // Enable some paths (healthcheck etc)
+            .authorizeRequests()
+            .antMatchers("/healthcheck.html")
+            .permitAll()
+            .and()
+            // Any other request needs authentication
             .requiresChannel()
             .anyRequest()
             .requiresSecure()
             .and()
+            // Authorization
             .authorizeRequests()
             .anyRequest().authenticated()
             .and()
