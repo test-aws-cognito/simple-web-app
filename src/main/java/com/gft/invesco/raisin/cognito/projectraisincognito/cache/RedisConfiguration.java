@@ -1,4 +1,4 @@
-package com.gft.invesco.raisin.cognito.projectraisincognito;
+package com.gft.invesco.raisin.cognito.projectraisincognito.cache;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.session.data.redis.config.ConfigureRedisAction;

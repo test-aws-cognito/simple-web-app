@@ -1,8 +1,7 @@
-package com.gft.invesco.raisin.cognito.projectraisincognito;
+package com.gft.invesco.raisin.cognito.projectraisincognito.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.core.env.Environment;
@@ -19,8 +18,11 @@ public class ConfigurationLogger {
 
     private static final Logger LOG = LoggerFactory.getLogger( ConfigurationLogger.class );
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
+
+    public ConfigurationLogger( Environment env ) {
+        this.env = env;
+    }
 
     @PostConstruct
     public void logConfiguration() {

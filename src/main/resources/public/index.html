@@ -9,11 +9,31 @@
       var protocol = location.protocol + "//";
       var host = location.hostname;
       var port = location.port ? ":" + location.port : "";
-      var path = '/api/test/ping';
+      var path_data = '/api/test/ping';
+      var path_user = '/api/test/ping_user';
+      var path_admin = '/api/test/ping_admin';
 
-      console.log('backend: ', protocol, host, port, path);
-      $.get(protocol + host + port + path).done(function (data) {
+      console.log('backend: ', protocol, host, port, path_data);
+      $.get(protocol + host + port + path_data).done(function (data) {
         $('#backend-message').html(data);
+      }).fail(function (error) {
+        $('#backend-message').html(error);
+      });
+
+      console.log('backend: ', protocol, host, port, path_user);
+      $.get(protocol + host + port + path_user).done(function (data) {
+        $('#backend-message-user').html(data);
+      }).fail(function (error) {
+        console.log('ERROR', error);
+        $('#backend-message-user').html('Error status: ' + error.status);
+      });
+
+      console.log('backend: ', protocol, host, port, path_admin);
+      $.get(protocol + host + port + path_admin).done(function (data) {
+        $('#backend-message-admin').html(data);
+      }).fail(function (error) {
+        console.log('ERROR', error);
+        $('#backend-message-admin').html('Error status: ' + error.status);
       });
     });
   </script>
@@ -22,7 +42,15 @@
 </head>
 <body>
 <p>This is simple staic page which is able to dynamically load some data with JavaScript with usage of AJAX.</p>
+<hr/>
+<p>Message from backend to USER role:</p>
+<p id="backend-message-user">Loading message...</p>
+<hr/>
+<p>Message from backend to ADMIN role:</p>
+<p id="backend-message-admin">Loading message...</p>
+<hr/>
 <p>Message from backend:</p>
 <p id="backend-message">Loading message...</p>
+<hr/>
 </body>
 </html>
